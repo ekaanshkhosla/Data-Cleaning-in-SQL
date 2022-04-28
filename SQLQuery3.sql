@@ -1,7 +1,7 @@
 Select * 
 from Project2.dbo.NH
 
---- Change Datae format
+----------------------- Change Date format -----------------------
 
 Select SaleDate, CONVERT(Date, SaleDate)
 from Project2.dbo.NH
@@ -16,7 +16,7 @@ Update NH
 Set SaleDateConverted = CONVERT(Date, SaleDate)
 
 
---- Cleaning Propert adress Data 
+----------------------- Cleaning Propert adress Data -----------------------
 
 Select a.ParcelID, a.PropertyAddress, b.ParcelID, b.PropertyAddress
 from NH a
@@ -35,7 +35,7 @@ Join NH b
 Where a.PropertyAddress is null
 
 
------- Breaking address into individual Columns ( Adress, city, State )
+----------------------- Breaking address into individual Columns ( Adress, city, State ) -----------------------
 
 Select PropertyAddress 
 From NH
@@ -90,7 +90,7 @@ SET OwnerSplitState = PARSENAME(REPLACE(OwnerAddress, ',', '.') , 1)
 Select *
 From NH
 
----- change Y and N to YES and NO in "sold as vacant" column 
+----------------------- change Y and N to YES and NO in "sold as vacant" column -----------------------
 
 Select Distinct(SoldAsVacant), Count(SoldAsVacant)
 From NH
@@ -111,7 +111,7 @@ Set SoldAsVacant = Case when SoldAsVacant ='Y' then 'Yes'
 	 end
 
 
------Remove duplicates
+----------------------- Remove duplicates -----------------------
 
 WITH RowNumCTE AS(
 Select *,
